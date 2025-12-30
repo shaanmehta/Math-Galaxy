@@ -15,7 +15,7 @@ GUI-based Python math game designed to help younger students practice fundamenta
 - `README.md`
 
 ## Getting started
-1. Download the repo
+1. Clone the repository (git clone https://github.com/shaanmehta/Math-Galaxy.git)
 2. Move all images to the main directory
 3. Install python-tk (Ensure minimum 8.6)
 4. Run python MathGalaxy.py (from the Math-Galaxy folder)
