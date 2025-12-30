@@ -1,11 +1,8 @@
 # Name: Shaan Mehta
-# Description: This is the Math Galaxy! Currently, there is not any
-#              functionality for the buttons since this is just a rough
-#              idea as to how I would like my GUI screen to look like. The
-#              buttons, labels, etc, for the required properties along with
-#              some additional implementations have been designed to show how
-#              the math game would appear without any functionality. 
-
+# Description: This is the Math Galaxy! This file contains a rough design of
+#              the desired product. The buttons, labels, etc, for the required 
+#              properties along with have been designed to show how the math game 
+#              would appear without any functionality. 
 
 # <-------------------------------Import Library------------------------------->
 import random
