@@ -7,18 +7,17 @@
 #              welcomes the user and prompts them to view their options. Then,
 #              the user is presented with various options for customization.
 #              These options include choosing the level of difficulty, selecting
-#              specific operators to focus on, the ability to include negative
+#              specific operators to focus on, the option to include negative
 #              numbers, and determining the number of questions to be asked.
-#              Once the user has completely filled in all of the options, they
-#              are directed to the game. Within the game, there are a range of
-#              features to enhance user interface. These include intuitive
-#              buttons such as "Back," "Start," "Enter," "Reset," and "Quit,"
-#              ensuring smooth navigation throughout the game. As the user
-#              progresses, the count of correct, wrong, and total attempts are
-#              displayed. To keep students motivated and encourage better
-#              results, a progress bar and stopwatch are shown as well.
-#              The Math Galaxy provides a comprehensive platform for users
-#              to practice their skills and become a math whiz!
+#              Once the user has filled in all of the options, they are directed 
+#              to the game. Within the game, there are a number of features to 
+#              enhance user interface. These include intuitive buttons such as 
+#              "Back," "Start," "Enter," "Reset," and "Quit," ensuring smooth 
+#              navigation throughout the game. As the user progresses, the count 
+#              of correct, wrong, and total attempts are displayed. To keep students 
+#              motivated and encourage better results, a progress bar and stopwatch 
+#              are shown as well. The Math Galaxy provides a comprehensive platform 
+#              for users to practice their skills and become a math whiz!
 
 
 # <-------------------------------Import Library------------------------------->
@@ -40,20 +39,25 @@ def move_to_second_tab():
     
 # Move from the second tab to the third tab when the button is clicked.
 def move_to_third_tab():
+    
     # Display an error message if no operators are selected.
     if ((addition_state.get()==False) and (subtraction_state.get()==False) and
         (multiplication_state.get()==False) and (division_state.get()==False)):
         messagebox.showerror("", "Please select an operator(s)")
+            
     # Display a message to tell the user to confirm their selections.
     else:
         optionConfirmation = messagebox.askyesno("",
                                             "Are you sure with your options?")
+        
         # Stay on the second tab if the user is not sure with their options.
         if (optionConfirmation == False):
             tab_control.select(1)
+            
         # Continue to the next tab.
         else:
             tab_control.select(2)
+            
             # Reset everything. 
             reset()
             
@@ -80,6 +84,7 @@ def reset():
 def generate_math_problem():
     global operator
     operator = []
+    
     # Append the operators to an empty list if they were selected during the
     # options screen.
     if (addition_state.get() == True):
@@ -90,8 +95,10 @@ def generate_math_problem():
         operator.append("×")
     if (division_state.get() == True):
         operator.append("÷")
+        
     # Generate a random operator when the start button is clicked.
     randomOp = random.choice(operator)
+    
     # Replace the question mark with a random operator.
     randomOperator.configure(text=randomOp)
     
@@ -109,6 +116,7 @@ def generate_math_problem():
             
         # Create the real num1 by doing reverse multiplication. 
         dividend = num1 * num2
+        
         # Change the initial question mark for randomNum1 and randomNum2
         randomNum1.configure(text=dividend)
         randomNum2.configure(text=num1)
@@ -134,6 +142,7 @@ def update_stopwatch():
     global start_time, final_time_display
     
     if (stopwatch_running == True): # The game has started.
+        
         # Calculate the time it takes from the start of the game to the end.
         final_time = time.time() - start_time
         
@@ -186,6 +195,7 @@ def num_attempts():
 # Check to see if the user's answer is correct or wrong.
 def check_answer():
     global total_questions
+    
     # Check to see if user input is valid.
     try:
         answer = int(userAnswer.get())
@@ -214,6 +224,7 @@ def check_answer():
     # Update the count of correct questions.
     if (answer == correct_ans):
         num_correct()
+        
     # Update the count of wrong questions.
     else:
         num_wrong()
@@ -238,6 +249,7 @@ def game_ended_message():
     global total_questions
     total_questions += 1
     num_attempts()
+    
     # Display a yes/no message box to ask the user if they want to play again.
     # Before doing this, tell them how they did during the game.
     end_of_game = messagebox.askyesno("", "Great Job! You completed " +
@@ -252,6 +264,7 @@ final time was " + str(final_time_display) + "! \n Would you like to play again?
         
     
 def enter_key_clicked(enter_key):
+    
     # Check if a question has been generated.
     operator = randomOperator["text"]
     
@@ -286,9 +299,11 @@ def back_button():
     backConfirmation = messagebox.askyesno("",
                                             "Are you sure you want to go back? \
     \n You will lose all of your progress!")
+    
     # Stay on the third tab if the user selects "No".
     if (backConfirmation == False):
         tab_control.select(2)
+        
     # Otherwise, go back to the second tab.
     else:
         tab_control.select(1)
@@ -296,9 +311,11 @@ def back_button():
 def exit_button():
     exitConfirmation = messagebox.askokcancel("", "Are you sure you want to \
 exit? \n This will close the game.")
+    
     # Stay on the third tab if the user selects "Cancel".
     if (exitConfirmation == False):
         tab_control.select(2)
+        
     # Otherwise, exit the game.
     else:
         mainScreen.destroy()
